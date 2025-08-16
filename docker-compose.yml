@@ -16,3 +16,7 @@ services:
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
     networks:
       - logging_network
+
+networks:
+  logging_network:
+    driver: bridge
