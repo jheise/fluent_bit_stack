@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  fluent-bit:
+    image: fluent/fluent-bit:2.1.10
+    container_name: fluent-bit
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "5"
+    volumes:
+      - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    networks:
+      - logging_network
